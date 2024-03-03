@@ -49,11 +49,11 @@ sequence_length = 28
 
 learning_rate = 5e-3
 batch_size = 256
-num_epochs = 10
+num_epochs = 20
 
 '''moe hyperparameters'''
-hidden_size_moe=256
-num_experts=20
+hidden_size_moe=512
+num_experts=10
 top_k=2 #top k gates pass
 
 load_params=False
@@ -105,7 +105,7 @@ class RNN_LSTM_moe(nn.Module):
 
 # Load Data
 train_dataset = datasets.MNIST(
-    root="C:\python learning\SAIDL\COMPUTER VISION\dataset", train=True, transform=transforms.Compose([transforms.RandomResizedCrop(input_size_features, scale=(0.8, 1.0)),transforms.ToTensor()]), download=True
+    root="C:\python learning\SAIDL\COMPUTER VISION\dataset", train=True, transform=transforms.Compose([transforms.RandomResizedCrop(input_size_features, scale=(0.8, 1.0)),transforms.GaussianBlur(kernel_size=3),transforms.ToTensor()]), download=True
 )
 test_dataset = datasets.MNIST(
     root="C:\python learning\SAIDL\COMPUTER VISION\dataset", train=False, transform=transforms.Compose([transforms.ToTensor()]), download=True
